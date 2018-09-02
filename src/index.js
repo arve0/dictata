@@ -3,7 +3,19 @@ const template_string_pattern = /\$\{([^}]+)}/g;
 let run = document.getElementById("run")
 let input = document.getElementById("input")
 
-run.addEventListener('click', function () {
+run.addEventListener('click', runTests)
+
+Array.from(document.querySelectorAll('p')).forEach(p => {
+    p.textContent = eval('`' + p.textContent.replace(template_string_pattern, '${__dictata_scope.$1}') + '`')
+})
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' && event.metaKey) {
+        runTests()
+    }
+})
+
+function runTests () {
     eval(input.value)
     let tests = Array.from(document.querySelectorAll('.test'))
 
@@ -26,9 +38,4 @@ run.addEventListener('click', function () {
             return false
         }
     }
-})
-
-Array.from(document.querySelectorAll('p')).forEach(p => {
-    p.textContent = eval('`' + p.textContent.replace(template_string_pattern, '${__dictata_scope.$1}') + '`')
-})
-
+}
