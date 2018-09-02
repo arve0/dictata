@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lage variabler</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="content"><script>
+function random({ from, to }) {
+    if (typeof from === 'string') {
+        return 'a'
+    } else if (typeof from === 'number') {
+        return from + Math.round(Math.random() * (to - from))
+    }
+}
+const __dictata_scope = {
+    navn: random({
+        from: 'a',
+        to: 'z',
+    }),
+    verdi: random({
+        from: 1,
+        to: 100,
+    })
+}
+</script>
+<p>Lag en variabel med navn ${navn} og verdi ${verdi}.</p>
+<div class="test">
+<h2>Test 1</h2>
+<pre><code class="language-test">${navn} === ${verdi}
+</code></pre>
+</div>
+</div>
+    <div id="answer">
+        <textarea id="input"></textarea>
+        <button id="run">Run</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
