@@ -4,7 +4,8 @@
   "description": "Interactive lessons for learning",
   "main": "index.js",
   "scripts": {
-    "build": "node index.js",
+    "build": "node index.js && npm run copy-codemirror",
+    "copy-codemirror": "sh copy-codemirror.sh",
     "test": "node test.js"
   },
   "repository": {
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/arve0/dictata#readme",
   "dependencies": {
+    "codemirror": "^5.40.0",
     "jstransformer-nunjucks": "^0.5.0",
     "markdown-it-template-literals": "^1.0.0",
     "metalsmith": "^2.3.0",

@@ -22,7 +22,7 @@ const __dictata_scope = {
 }
 </script>
 
-Lag en variabel med navn ${navn} og verdi ${verdi}.
+Lag en variabel med navn `navn` og verdi `verdi`.
 
 ```test
 ${navn} === ${verdi}

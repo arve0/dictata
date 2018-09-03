@@ -1,12 +1,17 @@
 const template_string_pattern = /\$\{([^}]+)}/g;
 
 let run = document.getElementById("run")
-let input = document.getElementById("input")
+let input = CodeMirror(document.getElementById("input"), {
+    mode: 'javascript',
+    lineNumbers: true,
+});
 
 run.addEventListener('click', runTests)
 
-Array.from(document.querySelectorAll('p')).forEach(p => {
-    p.textContent = eval('`' + p.textContent.replace(template_string_pattern, '${__dictata_scope.$1}') + '`')
+Array.from(document.querySelectorAll('code')).forEach(c => {
+    if (__dictata_scope[c.textContent]) {
+        c.textContent = eval('`${__dictata_scope.' + c.textContent + '}`')
+    }
 })
 
 document.addEventListener('keydown', function (event) {
@@ -16,7 +21,7 @@ document.addEventListener('keydown', function (event) {
 })
 
 function runTests () {
-    eval(input.value)
+    eval(input.getValue())
     let tests = Array.from(document.querySelectorAll('.test'))
 
     for (let i = 0; i < tests.length; i++) {

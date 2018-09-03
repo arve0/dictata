@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lage variabler</title>
     <link rel="stylesheet" href="style.css">
+    <script src="codemirror.js"></script>
+    <link rel="stylesheet" href="codemirror.css">
+    <script src="mode-javascript.js"></script>
 </head>
 <body>
     <div id="content"><script>
@@ -26,7 +29,7 @@ const __dictata_scope = {
     })
 }
 </script>
-<p>Lag en variabel med navn ${navn} og verdi ${verdi}.</p>
+<p>Lag en variabel med navn <code>navn</code> og verdi <code>verdi</code>.</p>
 <div class="test">
 <h2>Test 1</h2>
 <pre><code class="language-test">${navn} === ${verdi}
@@ -34,7 +37,7 @@ const __dictata_scope = {
 </div>
 </div>
     <div id="answer">
-        <textarea id="input"></textarea>
+        <div id="input"></div>
         <button id="run">Run</button>
     </div>
     <script src="index.js"></script>
