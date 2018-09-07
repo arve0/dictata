@@ -1,7 +1,7 @@
 const template_string_pattern = /\$\{([^}]+)}/g;
 
 let run = document.getElementById("run")
-let input = CodeMirror(document.getElementById("input"), {
+let input = CodeMirror(document.getElementById("answer"), {
     mode: 'javascript',
     lineNumbers: true,
 });

@@ -10,7 +10,11 @@
     <script src="mode-javascript.js"></script>
 </head>
 <body>
-    <div id="content"><script>
+    <div id="menubar">
+        Dictata
+    </div>
+    <div id="container">
+        <div id="content"><script>
 function random({ from, to }) {
     if (typeof from === 'string') {
         return 'a'
@@ -36,8 +40,9 @@ const __dictata_scope = {
 </code></pre>
 </div>
 </div>
-    <div id="answer">
-        <div id="input"></div>
+        <div id="answer"></div>
+    </div>
+    <div id="actions">
         <button id="run">Run</button>
     </div>
     <script src="index.js"></script>

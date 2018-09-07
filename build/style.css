@@ -1,8 +1,23 @@
 body {
+    margin: 0;
+    background-color: mintcream;
+    color: #111;
+}
+
+#menubar, #actions {
+    height: 20px;
+    padding: 8px;
+    background-color: #54d06a;
+}
+
+#container {
+    height: calc(100vh - 8px - 8px - 20px - 8px - 8px - 20px);
+    margin-left: 8px;
+    margin-right: 8px;
     display: grid;
     grid-auto-columns: 1fr;
-    grid-column-gap: 20px;
 }
+
 #content {
     grid-column: 1;
     grid-row: 1;
@@ -10,11 +25,16 @@ body {
 #content pre > code.language-test {
     display: none;
 }
+
 #answer {
     grid-column: 2;
     grid-row: 1;
+    height: 100%;
 }
-#answer textarea {
-    width: 100%;
-    height: 90vh;
+#answer .CodeMirror {
+    height: auto !important;
+}
+
+#actions > * {
+    float: right;
 }
