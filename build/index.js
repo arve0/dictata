@@ -1,28 +1,14 @@
-const template_string_pattern = /\$\{([^}]+)}/g;
-
-let run = document.getElementById("run")
-let input = CodeMirror(document.getElementById("answer"), {
+// initialize code editor
+let input = CodeMirror($("#answer"), {
     mode: 'javascript',
     lineNumbers: true,
 });
 
-run.addEventListener('click', runTests)
-
-// replace <code>a</code> with <code>`${__dictata_scope.a}`</scope>
-$$('code').forEach(c => {
-    if (__dictata_scope[c.textContent]) {
-        c.textContent = eval('`${__dictata_scope.' + c.textContent + '}`')
-    }
-})
-
-$$('.test code').forEach(test => {
-    test.textContent = 'function test () {\n' +
-        '  return ' + eval('`' + test.textContent.replace(template_string_pattern, '${__dictata_scope.$1}') + '`') +
-        '}'
-})
-
+// run tests by either clicking button or cmd/ctrl + enter
+$('#run').addEventListener('click', runTests)
 document.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' && event.metaKey) {
+    if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault()  // avoid newline in editor
         runTests()
     }
 })
@@ -48,6 +34,23 @@ function runTests () {
     }
 }
 
+
+// replace <code>a</code> with <code>`${__dictata_scope.a}`</scope>
+const template_string_pattern = /\$\{([^}]+)}/g;
+
+$$('code').forEach(c => {
+    if (__dictata_scope[c.textContent]) {
+        c.textContent = eval('`${__dictata_scope.' + c.textContent + '}`')
+    }
+})
+
+// wrap tests with function test () { }
+$$('.test code').forEach(test => {
+    test.textContent = 'function test () {\n' +
+        '  return ' + eval('`' + test.textContent.replace(template_string_pattern, '${__dictata_scope.$1}') + '`') +
+        '}'
+})
+
 // show test on title click
 $$('.test').forEach(test => {
     var visible = false
@@ -63,6 +66,7 @@ $$('.test').forEach(test => {
     })
 })
 
+// helpers
 function $ (query, element) {
     element = element || document
     return element.querySelector(query)
