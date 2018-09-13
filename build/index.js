@@ -8,10 +8,17 @@ let input = CodeMirror(document.getElementById("answer"), {
 
 run.addEventListener('click', runTests)
 
-Array.from(document.querySelectorAll('code')).forEach(c => {
+// replace <code>a</code> with <code>`${__dictata_scope.a}`</scope>
+$$('code').forEach(c => {
     if (__dictata_scope[c.textContent]) {
         c.textContent = eval('`${__dictata_scope.' + c.textContent + '}`')
     }
+})
+
+$$('.test code').forEach(test => {
+    test.textContent = 'function test () {\n' +
+        '  return ' + eval('`' + test.textContent.replace(template_string_pattern, '${__dictata_scope.$1}') + '`') +
+        '}'
 })
 
 document.addEventListener('keydown', function (event) {
@@ -22,25 +29,46 @@ document.addEventListener('keydown', function (event) {
 
 function runTests () {
     eval(input.getValue())
-    let tests = Array.from(document.querySelectorAll('.test'))
+    for ([i, test] of $$('.test').entries()) {
+        let content = $('code', test).textContent
 
-    for (let i = 0; i < tests.length; i++) {
-        let test = tests[i]
-        let test_content = test.querySelector('code').textContent
-
-        if (runTest(test_content)) {
-            test.children[0].textContent = `Test ${i + 1} - OK`
+        if (runTest(content)) {
+            $('h2', test).textContent = `Test ${i + 1} - OK`
         } else {
-            test.children[0].textContent = `Test ${i + 1} - FAILED`
+            $('h2', test).textContent = `Test ${i + 1} - FAILED`
         }
     }
 
-    function runTest(test) {
+    function runTest(content) {
         try {
-            test = eval('`' + test.replace(template_string_pattern, '${__dictata_scope.$1}') + '`')
-            return eval(test)
+            return eval('(' + content + ')()')
         } catch (_) {
             return false
         }
     }
+}
+
+// show test on title click
+$$('.test').forEach(test => {
+    var visible = false
+    let header = $('h2', test)
+    header.title = 'Show test'
+    header.addEventListener('click', () => {
+        visible = !visible
+        if (visible) {
+            $('pre > code', test).style.display = 'block'
+        } else {
+            $('pre > code', test).style.display = ''
+        }
+    })
+})
+
+function $ (query, element) {
+    element = element || document
+    return element.querySelector(query)
+}
+
+function $$ (query, element) {
+    element = element || document
+    return Array.from(element.querySelectorAll(query))
 }
