@@ -10,7 +10,7 @@ body {
     grid-auto-rows: min-content 1fr min-content;
 }
 
-#menubar, #actions {
+header, footer {
     padding: 8px;
     background-color: #54d06a;
 }
@@ -29,6 +29,9 @@ body {
 #content pre > code.language-test {
     display: none;
 }
+#content .test > h2 {
+    cursor: pointer;
+}
 
 #answer {
     grid-column: 2;
@@ -39,7 +42,7 @@ body {
     height: auto !important;
 }
 
-#actions > * {
+footer > * {
     float: right;
     margin: 0
 }
