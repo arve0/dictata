@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
-    <link rel="stylesheet" href="milligram.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="codemirror.js"></script>
-    <link rel="stylesheet" href="codemirror.css">
-    <script src="mode-javascript.js"></script>
+    <link rel="stylesheet" href="/milligram.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/codemirror.js"></script>
+    <link rel="stylesheet" href="/codemirror.css">
+    <script src="/mode-javascript.js"></script>
 </head>
 <body>
     <div id="container">
@@ -20,12 +20,23 @@
                 <h1>{{title}}</h1>
                 {{contents}}
             </div>
-            <div id="answer"></div>
+            {% if notest !== true %}
+                <div id="answer"></div>
+            {% endif %}
         </div>
-        <footer class="clearfix">
-            <button id="run">Run</button>
+        <footer>
+            {% for member in ancestry.members %}
+                {% if member === ancestry.self %}
+                    <button>{{member.ancestry.memberIndex}}</button>
+                {% else %}
+                    <a href="{{member.ancestry.basename}}"><button>{{member.ancestry.memberIndex}}</button></a>
+                {% endif %}
+            {% endfor %}
+            {% if notest !== true %}
+                <button id="run" class="float-right">Run</button>
+            {% endif %}
         </footer>
     </div>
-    <script src="index.js"></script>
+    <script src="/index.js"></script>
 </body>
 </html>
