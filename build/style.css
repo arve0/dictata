@@ -30,6 +30,7 @@ header, footer {
 #content {
     padding-left: 8px;
     padding-right: 8px;
+    max-width: calc(800px - 8px - 8px);
     padding-top: 1rem;
     grid-column: 1;
     grid-row: 1;
@@ -59,7 +60,7 @@ header, footer {
     height: auto !important;
 }
 
-footer > * {
+footer button {
     margin: 0
 }
 

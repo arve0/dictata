@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/milligram.css">
-    <link rel="stylesheet" href="/style.css">
-    <script src="/codemirror.js"></script>
-    <link rel="stylesheet" href="/codemirror.css">
-    <script src="/mode-javascript.js"></script>
+    <link rel="stylesheet" href="../milligram.css">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../codemirror.js"></script>
+    <link rel="stylesheet" href="../codemirror.css">
+    <script src="../mode-javascript.js"></script>
 </head>
 <body>
     <div id="container">
@@ -20,23 +20,23 @@
                 <h1>{{title}}</h1>
                 {{contents}}
             </div>
-            {% if notest !== true %}
+            {% if noanswer !== true %}
                 <div id="answer"></div>
             {% endif %}
         </div>
         <footer>
             {% for member in ancestry.members %}
-                {% if member === ancestry.self %}
-                    <button>{{member.ancestry.memberIndex}}</button>
-                {% else %}
-                    <a href="{{member.ancestry.basename}}"><button>{{member.ancestry.memberIndex}}</button></a>
-                {% endif %}
+                <a href="{{member.ancestry.basename}}" class="task">
+                    <button class="{% if member !== ancestry.self %} button-outline {% endif %}">
+                        {{member.ancestry.memberIndex + 1}}
+                    </button>
+                </a>
             {% endfor %}
-            {% if notest !== true %}
+            {% if noanswer !== true %}
                 <button id="run" class="float-right">Run</button>
             {% endif %}
         </footer>
     </div>
-    <script src="/index.js"></script>
+    <script src="../index.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 ---
 title: Variabler
-notest: true
+noanswer: true
 ---
 
 Vi kan navngi tall i JavaScript, eksempelvis

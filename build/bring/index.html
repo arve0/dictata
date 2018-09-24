@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Brings API for postnummer</title>
+    <link rel="stylesheet" href="../milligram.css">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../codemirror.js"></script>
+    <link rel="stylesheet" href="../codemirror.css">
+    <script src="../mode-javascript.js"></script>
+</head>
+<body>
+    <div id="container">
+        <header>
+            Dictata
+        </header>
+        <div id="contents">
+            <div id="content">
+                <h1>Brings API for postnummer</h1>
+                <p><a href="https://developer.bring.com/api/postal-code/">Med Brings API for postnummer</a> kan vi sjekke hvilket poststed et postnummer har.
+Eksempelvis har postnummeret 7049 poststed TRONDHEIM.</p>
+<p>Hovedmål med denne leksjonen er å fylle inn poststed automatisk ved hjelp av
+API-et. Prøv å fylle inn et postnummer under:</p>
+<div>
+    <label>Postnummer<input id=postnumber type=text></label>
+    <label>Poststed<input id=place type=text disabled></label>
+    <script>
+        function getPlace(number) {
+            let url = `https://api.bring.com/shippingguide/api/postalCode.json?pnr=${number}&clientUrl=dictata`
+            return fetch(url)
+                .then(response => response.json())
+        }
+        document.getElementById('postnumber').addEventListener('input', event => {
+            let number = event.target.value
+            getPlace(number)
+                .then(response => {
+                    document.getElementById('place').value = response.result
+                    if (response.valid) {
+                        approveTask()
+                    }
+                })
+        })
+    </script>
+</div>
+
+            </div>
+            
+        </div>
+        <footer>
+            
+                <a href="index.html" class="task">
+                    <button class="">
+                        1
+                    </button>
+                </a>
+            
+                <a href="01-tema.html" class="task">
+                    <button class=" button-outline ">
+                        2
+                    </button>
+                </a>
+            
+                <a href="02-url-med-template-string.html" class="task">
+                    <button class=" button-outline ">
+                        3
+                    </button>
+                </a>
+            
+                <a href="03-fetch.html" class="task">
+                    <button class=" button-outline ">
+                        4
+                    </button>
+                </a>
+            
+                <a href="04-fetch-json.html" class="task">
+                    <button class=" button-outline ">
+                        5
+                    </button>
+                </a>
+            
+            
+        </footer>
+    </div>
+    <script src="../index.js"></script>
+</body>
+</html>

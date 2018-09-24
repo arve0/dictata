@@ -25,5 +25,8 @@ const __dictata_scope = {
 Lag en variabel med navn `navn` og verdi `verdi`.
 
 ```test
-${navn} === ${verdi}
+function test (input) {
+    eval(input)
+    return ${navn} === ${verdi}
+}
 ```

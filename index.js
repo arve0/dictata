@@ -9,7 +9,7 @@ Metalsmith(__dirname)
     .use(md({ html: true }).use(dictata))
     .use(ancestry())
     .use(function (files, ms) {
-        console.log(files)
+        // console.log(files)
     })
     .use(layouts({
         default: 'layout.njk',

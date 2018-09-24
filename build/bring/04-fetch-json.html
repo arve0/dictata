@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lage variabler</title>
+    <title>JSON med fetch</title>
     <link rel="stylesheet" href="../milligram.css">
     <link rel="stylesheet" href="../style.css">
     <script src="../codemirror.js"></script>
@@ -17,32 +17,20 @@
         </header>
         <div id="contents">
             <div id="content">
-                <h1>Lage variabler</h1>
-                <script>
-function random({ from, to }) {
-    if (typeof from === 'string') {
-        return 'a'
-    } else if (typeof from === 'number') {
-        return from + Math.round(Math.random() * (to - from))
-    }
-}
-const __dictata_scope = {
-    navn: random({
-        from: 'a',
-        to: 'z',
-    }),
-    verdi: random({
-        from: 1,
-        to: 100,
-    })
-}
-</script>
-<p>Lag en variabel med navn <code>navn</code> og verdi <code>verdi</code>.</p>
+                <h1>JSON med fetch</h1>
+                <p>Lag en funksjon med navn <code>hent</code> som:</p>
+<ul>
+<li>bruker <code>fetch</code>,</li>
+<li>henter URL <code>https://httpbin.org/get?key=val</code>,</li>
+<li>bruker <code>.json()</code> for å hente ressursen som JSON</li>
+<li>og returnerer resultatet.</li>
+</ul>
 <div class="test">
 <h2>Test 1</h2>
-<pre><code class="language-test">function test (input) {
+<pre><code class="language-test">async function test (input) {
     eval(input)
-    return ${navn} === ${verdi}
+    let result = await hent()
+    return result.args.key === 'val'
 }
 </code></pre>
 </div>
@@ -60,9 +48,27 @@ const __dictata_scope = {
                     </button>
                 </a>
             
-                <a href="lage_variabler.html" class="task">
-                    <button class="">
+                <a href="01-tema.html" class="task">
+                    <button class=" button-outline ">
                         2
+                    </button>
+                </a>
+            
+                <a href="02-url-med-template-string.html" class="task">
+                    <button class=" button-outline ">
+                        3
+                    </button>
+                </a>
+            
+                <a href="03-fetch.html" class="task">
+                    <button class=" button-outline ">
+                        4
+                    </button>
+                </a>
+            
+                <a href="04-fetch-json.html" class="task">
+                    <button class="">
+                        5
                     </button>
                 </a>
             
