@@ -83,7 +83,7 @@ $$('.test').forEach(test => {
 function updateApprovedTasks () {
     let i = 1;
     $$('footer .task').forEach(task => {
-        let pathname = task.href ? new window.URL(task.href).pathname : location.pathname
+        let pathname = task.href ? new URL(task.href).pathname : location.pathname
         $('button', task).textContent = i + (isApproved(pathname) ? ' ✓' : '')
         i += 1;
     })

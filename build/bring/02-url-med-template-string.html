@@ -18,13 +18,13 @@
         <div id="contents">
             <div id="content">
                 <h1>URL med template string</h1>
-                <p>Lag variabelen <code>URL</code> som bruker <code>postnummer</code> for å lage en URL til Brings API.</p>
-<p>Eksempelvis skal postnummer <code>9100</code> gi <code>URL</code> lik <code>https://api.bring.com/shippingguide/api/postalCode.json?pnr=9100</code>.</p>
+                <p>Lag variabelen <code>url</code> som bruker <code>postnummer</code> for å lage en URL til Brings API.</p>
+<p>Eksempelvis skal postnummer <code>9100</code> gi <code>url</code> lik <code>https://api.bring.com/shippingguide/api/postalCode.json?pnr=9100</code>.</p>
 <div class="test">
 <h2>Test 1</h2>
 <pre><code class="language-test">function test (input) {
     addInputAsScript(&quot;var postnummer = 7040; &quot; + input)
-    return URL === 'https://api.bring.com/shippingguide/api/postalCode.json?pnr=7040'
+    return url === 'https://api.bring.com/shippingguide/api/postalCode.json?pnr=7040'
 }
 </code></pre>
 </div>
