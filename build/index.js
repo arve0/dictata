@@ -2,6 +2,7 @@
 let input = CodeMirror($("#answer"), {
     mode: 'javascript',
     lineNumbers: true,
+    lineWrapping: true,
     value: localStorage.getItem(location.pathname + "#input") || "",
 })
 
@@ -118,6 +119,6 @@ function addInputAsScript (str) {
 
     let script = document.createElement('script')
     script.id = 'answer-script'
-    script.innerText = str
+    script.appendChild(document.createTextNode(str))
     document.body.appendChild(script)
 }

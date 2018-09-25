@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Brings API for postnummer</title>
+    <title>Hent verdi fra dokumentet</title>
     <link rel="stylesheet" href="../milligram.css">
     <link rel="stylesheet" href="../style.css">
     <script src="../codemirror.js"></script>
@@ -15,42 +15,30 @@
         <header>
             Dictata
         </header>
-        <div id="contents" class="one-child">
+        <div id="contents" >
             <div id="content">
-                <h1>Brings API for postnummer</h1>
-                <p><a href="https://developer.bring.com/api/postal-code/">Med Brings API for postnummer</a> kan vi sjekke hvilket poststed et postnummer har.
-Eksempelvis har postnummeret 7049 poststed TRONDHEIM.</p>
-<p>Hovedmål med denne leksjonen er å fylle inn poststed automatisk ved hjelp av
-API-et. Prøv å fylle inn et postnummer under:</p>
-<div>
-    <label>Postnummer<input id=postnumber type=text></label>
-    <label>Poststed<input id=place type=text disabled></label>
-    <script>
-        function getPlace(number) {
-            let url = `https://api.bring.com/shippingguide/api/postalCode.json?pnr=${number}&clientUrl=dictata`
-            return fetch(url)
-                .then(response => response.json())
-        }
-        document.getElementById('postnumber').addEventListener('input', event => {
-            let number = event.target.value
-            getPlace(number)
-                .then(response => {
-                    document.getElementById('place').value = response.result
-                    if (response.valid) {
-                        approveTask()
-                    }
-                })
-        })
-    </script>
+                <h1>Hent verdi fra dokumentet</h1>
+                <p>Bruk <code>document.querySelector</code> til å hente verdien til input-feltet under.
+Lagre verdien til en variabel med navn <code>innVerdi</code>.</p>
+<input id="inn-verdi" type="text" value="Jeg har en id.">
+<div class="test">
+<h2>Test 1</h2>
+<pre><code class="language-test">function test (input) {
+    addInputAsScript(input)
+    return innVerdi === document.querySelector(&quot;#inn-verdi&quot;).value
+}
+</code></pre>
 </div>
 
             </div>
+            
+                <div id="answer"></div>
             
         </div>
         <footer>
             
                 <a href="index.html" class="task">
-                    <button class="">
+                    <button class=" button-outline ">
                         1
                     </button>
                 </a>
@@ -80,11 +68,13 @@ API-et. Prøv å fylle inn et postnummer under:</p>
                 </a>
             
                 <a href="05-dom.html" class="task">
-                    <button class=" button-outline ">
+                    <button class="">
                         6
                     </button>
                 </a>
             
+            
+                <button id="run" class="float-right">Run</button>
             
         </footer>
     </div>
