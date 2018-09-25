@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JSON med fetch</title>
+    <title>Sett verdi i documentet</title>
     <link rel="stylesheet" href="../milligram.css">
     <link rel="stylesheet" href="../style.css">
     <script src="../codemirror.js"></script>
@@ -17,20 +17,16 @@
         </header>
         <div id="contents" >
             <div id="content">
-                <h1>JSON med fetch</h1>
-                <p>Lag en funksjon med navn <code>hent</code> som:</p>
-<ul>
-<li>bruker <code>fetch</code>,</li>
-<li>henter URL <code>https://httpbin.org/get?key=val</code>,</li>
-<li>bruker <code>.json()</code> for å hente ressursen som JSON</li>
-<li>og returnerer resultatet.</li>
-</ul>
+                <h1>Sett verdi i documentet</h1>
+                <p>Bruk <code>document.querySelector</code> til å hente input-feltet under og sett verdien
+i feltet til å være <code>satt fra js</code>.</p>
+<input id="ut-verdi" type="text" value="Du skal endre meg." disabled>
 <div class="test">
 <h2>Test 1</h2>
-<pre><code class="language-test">async function test (input) {
-    eval(input)
-    let result = await hent()
-    return result.args.key === 'val'
+<pre><code class="language-test">function test (input) {
+//    document.querySelector(&quot;#ut-verdi&quot;).value = &quot;Du skal endre meg.&quot;
+    addInputAsScript(input)
+    return document.querySelector(&quot;#ut-verdi&quot;).value === &quot;satt fra js&quot;
 }
 </code></pre>
 </div>
@@ -67,7 +63,7 @@
                 </a>
             
                 <a href="04-fetch-json.html" class="task">
-                    <button class="">
+                    <button class=" button-outline ">
                         5
                     </button>
                 </a>
@@ -79,7 +75,7 @@
                 </a>
             
                 <a href="06-oppdatere-dom.html" class="task">
-                    <button class=" button-outline ">
+                    <button class="">
                         7
                     </button>
                 </a>
