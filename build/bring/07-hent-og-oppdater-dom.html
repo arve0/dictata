@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JSON med fetch</title>
+    <title>Sett verdi i documentet</title>
     <link rel="stylesheet" href="../milligram.css">
     <link rel="stylesheet" href="../style.css">
     <script src="../codemirror.js"></script>
@@ -17,20 +17,25 @@
         </header>
         <div id="contents" >
             <div id="content">
-                <h1>JSON med fetch</h1>
-                <p>Lag en funksjon med navn <code>hent</code> som:</p>
-<ul>
-<li>bruker <code>fetch</code>,</li>
-<li>henter URL <code>https://httpbin.org/get?key=val</code>,</li>
-<li>bruker <code>.json()</code> for å hente ressursen som JSON</li>
-<li>og returnerer resultatet.</li>
-</ul>
+                <h1>Sett verdi i documentet</h1>
+                <p>En kan bruke <a href="https://httpbin.org/">httpbin</a> for å teste HTTP-forespørsler.
+Om en henter <code>https://httpbin.org/get</code> får en tilbake JSON. Objektet har
+en nøkkel, <code>headers</code>, som inneholder informasjon som nettleseren sendte.</p>
+<p>Oppgave: Hent <code>https://httpbin.org/get</code> og lagre <code>headers</code> fra responsen i tekstfeltet under.</p>
+<p>Hint: <code>JSON.stringify(headers, null, 2)</code> vil gjøre objektet <code>headers</code> om til tekst.</p>
+<p><textarea id="tekstfelt" disabled></textarea></p>
 <div class="test">
 <h2>Test 1</h2>
 <pre><code class="language-test">async function test (input) {
-    eval(input)
-    let result = await hent()
-    return result.args.key === 'val'
+    addInputAsScript(input)
+    await sleep(500)
+    return document.querySelector(&quot;#tekstfelt&quot;).value.indexOf(window.navigator.userAgent) !== -1
+}
+
+function sleep (ms) {
+    return new Promise((resolve) =&gt; {
+        setTimeout(resolve, ms)
+    })
 }
 </code></pre>
 </div>
@@ -67,7 +72,7 @@
                 </a>
             
                 <a href="04-fetch-json.html" class="task">
-                    <button class="">
+                    <button class=" button-outline ">
                         5
                     </button>
                 </a>
@@ -85,7 +90,7 @@
                 </a>
             
                 <a href="07-hent-og-oppdater-dom.html" class="task">
-                    <button class=" button-outline ">
+                    <button class="">
                         8
                     </button>
                 </a>
