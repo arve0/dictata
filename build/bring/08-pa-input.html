@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JSON med fetch</title>
+    <title>Ved endring av innfelt</title>
     <link rel="stylesheet" href="../milligram.css">
     <link rel="stylesheet" href="../style.css">
     <script src="../codemirror.js"></script>
@@ -17,20 +17,28 @@
         </header>
         <div id="contents" >
             <div id="content">
-                <h1>JSON med fetch</h1>
-                <p>Lag en funksjon med navn <code>hent</code> som:</p>
-<ul>
-<li>bruker <code>fetch</code>,</li>
-<li>henter URL <code>https://httpbin.org/get?key=val</code>,</li>
-<li>bruker <code>.json()</code> for å hente ressursen som JSON</li>
-<li>og returnerer resultatet.</li>
-</ul>
+                <h1>Ved endring av innfelt</h1>
+                <p>Bruk <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"><code>addEventListener</code></a>
+til å detektere endringer av verdien til feltet.</p>
+<p>Steg:</p>
+<ol>
+<li>Bruk <code>querySelector</code> til å hente elementet.</li>
+<li>Bruk <code>addEventListener</code> til å registrere en funksjon som kjører når verdien endrer seg.</li>
+<li>Eventen for endring av verdi heter <code>input</code>.</li>
+<li>Funksjonen skal en parameter, <code>event</code>.</li>
+<li>Bruk <code>event.target.value</code> til å hente verdien.</li>
+<li>Lagre verdien til den globale variabelen <code>lagretVerdi</code>.</li>
+</ol>
+<input id="inn-verdi" type="text" value="Jeg har en id.">
 <div class="test">
 <h2>Test 1</h2>
-<pre><code class="language-test">async function test (input) {
-    eval(input)
-    let result = await hent()
-    return result.args.key === 'val'
+<pre><code class="language-test">function test (input) {
+    addScriptInIframe('var lagretVerdi = &quot;---&quot;;' + input)
+    let el = $('#inn-verdi')
+    el.value = Math.random()
+    el.dispatchEvent(new Event('input'))
+
+    return evalInIframe('lagretVerdi') === el.value
 }
 </code></pre>
 </div>
@@ -67,7 +75,7 @@
                 </a>
             
                 <a href="04-fetch-json.html" class="task">
-                    <button class="">
+                    <button class=" button-outline ">
                         5
                     </button>
                 </a>
@@ -91,7 +99,7 @@
                 </a>
             
                 <a href="08-pa-input.html" class="task">
-                    <button class=" button-outline ">
+                    <button class="">
                         9
                     </button>
                 </a>

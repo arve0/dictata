@@ -148,3 +148,7 @@ function replaceDocument (str) {
         return match[0] + 'parent.document'
     })
 }
+
+function sleep (ms) {
+    return new Promise(r => setTimeout(r, ms))
+}
