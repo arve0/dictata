@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sett verdi i documentet</title>
+    <title>Postnummer til poststed</title>
     <link rel="stylesheet" href="../milligram.css">
     <link rel="stylesheet" href="../style.css">
     <script src="../codemirror.js"></script>
@@ -17,25 +17,27 @@
         </header>
         <div id="contents" >
             <div id="content">
-                <h1>Sett verdi i documentet</h1>
-                <p>En kan bruke <a href="https://httpbin.org/">httpbin</a> for å teste HTTP-forespørsler.
-Om en henter <code>https://httpbin.org/get</code> får en tilbake JSON. Objektet har
-en nøkkel, <code>headers</code>, som inneholder informasjon som nettleseren sendte.</p>
-<p>Oppgave: Hent <code>https://httpbin.org/get</code> og lagre <code>headers</code> fra responsen i tekstfeltet under.</p>
-<p>Hint: <code>JSON.stringify(headers, null, 2)</code> vil gjøre objektet <code>headers</code> om til tekst.</p>
-<p><textarea id="tekstfelt" disabled></textarea></p>
+                <h1>Postnummer til poststed</h1>
+                <p>Bruk alle de forrige oppgavene til å bygge opp oppslag på postnummer
+via Brings API. Oppdater poststed-feltet under med resultatet fra Bring.</p>
+<p>Hint: URL for Bring er <code>https://api.bring.com/shippingguide/api/postalCode.json?clientUrl=localhost&amp;pnr=postnummer</code>.</p>
+<p><label>Postnummer
+<input name=postnummer id=postnummer type=text>
+</label>
+<label>Poststed
+<input name=poststed id=poststed type=text disabled>
+</label></p>
 <div class="test">
 <h2>Test 1</h2>
-<pre><code class="language-test">async function test (input) {
+<pre><code class="language-test">async function test () {
     addScriptInIframe(input)
-    await sleep(500)
-    return document.querySelector(&quot;#tekstfelt&quot;).value.indexOf(window.navigator.userAgent) !== -1
-}
+    let el = $('#postnummer')
+    el.value = '3322'
+    el.dispatchEvent(new Event('input'))
 
-function sleep (ms) {
-    return new Promise((resolve) =&gt; {
-        setTimeout(resolve, ms)
-    })
+    await sleep(500)
+
+    return $('#poststed').value === 'FISKUM'
 }
 </code></pre>
 </div>
@@ -90,7 +92,7 @@ function sleep (ms) {
                 </a>
             
                 <a href="07-hent-og-oppdater-dom.html" class="task">
-                    <button class="">
+                    <button class=" button-outline ">
                         8
                     </button>
                 </a>
@@ -102,7 +104,7 @@ function sleep (ms) {
                 </a>
             
                 <a href="09-alle.html" class="task">
-                    <button class=" button-outline ">
+                    <button class="">
                         10
                     </button>
                 </a>
