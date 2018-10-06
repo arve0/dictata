@@ -24,8 +24,8 @@ Lagre verdien til en variabel med navn <code>innVerdi</code>.</p>
 <div class="test">
 <h2>Test 1</h2>
 <pre><code class="language-test">function test (input) {
-    addInputAsScript(input)
-    return innVerdi === document.querySelector(&quot;#inn-verdi&quot;).value
+    addScriptInIframe(input)
+    return evalInIframe('innVerdi') === document.querySelector(&quot;#inn-verdi&quot;).value
 }
 </code></pre>
 </div>

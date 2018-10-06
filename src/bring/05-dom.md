@@ -10,8 +10,8 @@ Lagre verdien til en variabel med navn `innVerdi`.
 
 ```test
 function test (input) {
-    addInputAsScript(input)
-    return innVerdi === document.querySelector("#inn-verdi").value
+    addScriptInIframe(input)
+    return evalInIframe('innVerdi') === document.querySelector("#inn-verdi").value
 }
 ```
 

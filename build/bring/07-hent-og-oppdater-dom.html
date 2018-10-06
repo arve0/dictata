@@ -27,7 +27,7 @@ en nøkkel, <code>headers</code>, som inneholder informasjon som nettleseren sen
 <div class="test">
 <h2>Test 1</h2>
 <pre><code class="language-test">async function test (input) {
-    addInputAsScript(input)
+    addScriptInIframe(input)
     await sleep(500)
     return document.querySelector(&quot;#tekstfelt&quot;).value.indexOf(window.navigator.userAgent) !== -1
 }

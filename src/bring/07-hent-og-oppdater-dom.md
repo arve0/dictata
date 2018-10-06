@@ -15,7 +15,7 @@ Hint: `JSON.stringify(headers, null, 2)` vil gjøre objektet `headers` om til te
 
 ```test
 async function test (input) {
-    addInputAsScript(input)
+    addScriptInIframe(input)
     await sleep(500)
     return document.querySelector("#tekstfelt").value.indexOf(window.navigator.userAgent) !== -1
 }

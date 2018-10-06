@@ -10,7 +10,7 @@ i feltet til å være `satt fra js`.
 
 ```test
 function test (input) {
-    addInputAsScript(input)
+    addScriptInIframe(input)
     return document.querySelector("#ut-verdi").value === "satt fra js"
 }
 ```

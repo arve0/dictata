@@ -111,14 +111,40 @@ function isApproved(pathname) {
     return localStorage.getItem(pathname) === "approved"
 }
 
-function addInputAsScript (str) {
-    let previousScript = $('script#answer-script')
-    if (previousScript) {
-        document.body.removeChild(previousScript)
+// adding in script -> global for `let variable`
+// adding in new iframe -> evaluate `let variable` without throwing
+function addScriptInIframe (str) {
+    let previousIframe = $('iframe')
+    if (previousIframe) {
+        document.body.removeChild(previousIframe)
     }
 
-    let script = document.createElement('script')
-    script.id = 'answer-script'
-    script.appendChild(document.createTextNode(str))
-    document.body.appendChild(script)
+    let iframe = document.createElement('iframe')
+    iframe.name = 'User input'
+    document.body.appendChild(iframe)
+
+    let frameDocument = iframe.contentDocument
+
+    let script = frameDocument.createElement('script')
+    script.appendChild(frameDocument.createTextNode(replaceDocument(str)))
+    frameDocument.body.appendChild(script)
+}
+
+function evalInIframe (str) {
+    let iframe = $('iframe')
+    if (!iframe) {
+        return
+    }
+    return iframe.contentWindow.eval(str)
+}
+
+function replaceDocument (str) {
+    return str.replace(/.?document/g, (match) => {
+        if (match.length === 'document'.length) {
+            return 'parent.document'
+        } else if (match[0].match(/\w/) !== null) {
+            return match
+        }
+        return match[0] + 'parent.document'
+    })
 }

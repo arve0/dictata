@@ -8,7 +8,7 @@ Eksempelvis skal postnummer `9100` gi `url` lik `https://api.bring.com/shippingg
 
 ```test
 function test (input) {
-    addInputAsScript("var postnummer = 7040; " + input)
-    return url === 'https://api.bring.com/shippingguide/api/postalCode.json?pnr=7040'
+    addScriptInIframe("var postnummer = 7040;" + input)
+    return evalInIframe(`url === 'https://api.bring.com/shippingguide/api/postalCode.json?pnr=7040'`)
 }
 ```
